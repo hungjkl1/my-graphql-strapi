@@ -39,6 +39,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "@apollo/federation": "^0.17.0",
     "apollo-server-koa": "2.9.12",
     "dataloader": "^1.4.0",
     "glob": "^7.1.4",

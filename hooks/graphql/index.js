@@ -9,6 +9,7 @@ const _ = require('lodash');
 const { ApolloServer } = require('apollo-server-koa');
 const depthLimit = require('graphql-depth-limit');
 const loadConfigs = require('./load-config');
+const { buildFederatedSchema } = require('@apollo/federation');
 console.log("ds")
 const attachMetadataToResolvers = (schema, { api, plugin }) => {
   const { resolver = {} } = schema;
@@ -83,10 +84,10 @@ module.exports = strapi => {
 
         return;
       }
-
+      const schemaDef = {};
+      schemaDef.schema = buildFederatedSchema([{ typeDefs, resolvers }]);
       const serverParams = {
-        typeDefs,
-        resolvers,
+        ...schemaDef,
         context: ({ ctx }) => {
           // Initiliase loaders for this request.
           // TODO: set loaders in the context not globally

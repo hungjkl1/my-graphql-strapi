@@ -91,7 +91,7 @@ const generateSchema = () => {
   }
 
   // Remove custom scalar (like Upload);
-  typeDefs = Types.removeCustomScalar(typeDefs, resolvers);
+  // typeDefs = Types.removeCustomScalar(typeDefs, resolvers);
 
   return {
     typeDefs: gql(typeDefs),
