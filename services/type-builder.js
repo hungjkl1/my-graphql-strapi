@@ -202,7 +202,7 @@ module.exports = {
 
     if (types.length > 0) {
       return {
-        definition: `union Morph = ${morp.replace(",","|")}`,
+        definition: `union Morph = ${morp.split(", ").join(" | ")}`,
         resolvers: {
           Morph: {
             __resolveType(obj) {
