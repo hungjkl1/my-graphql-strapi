@@ -9,7 +9,7 @@ const _ = require('lodash');
 const { ApolloServer } = require('apollo-server-koa');
 const depthLimit = require('graphql-depth-limit');
 const loadConfigs = require('./load-config');
-
+console.log("ds")
 const attachMetadataToResolvers = (schema, { api, plugin }) => {
   const { resolver = {} } = schema;
   if (_.isEmpty(resolver)) return schema;
