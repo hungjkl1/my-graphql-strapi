@@ -141,7 +141,7 @@ module.exports = {
       return attribute.model ? 'ID' : '[ID]';
     }
 
-    return attribute.model ? 'Morph' : '[Morph]';
+    return attribute.model ? strapi.plugins.graphql.serviceName : `[${strapi.plugins.graphql.serviceName}]`;
   },
 
   /**
@@ -200,13 +200,14 @@ module.exports = {
       .map(def => def.name.value);
     if (types.length > 0) {
       const a = {}
-      a[strapi.serviceName] = {
+      a[strapi.plugins.graphql.serviceName] = {
         __resolveType(obj) {
           return obj.kind || obj.__contentType || null;
         },
       }
+      console.log({...a})
       return {
-        definition: `union ${strapi.serviceName} = ${morp.split(", ").join(" | ")}`,
+        definition: `union ${strapi.plugins.graphql.serviceName} = ${types.join(' | ')}`,
         resolvers: {
           ...a
         },

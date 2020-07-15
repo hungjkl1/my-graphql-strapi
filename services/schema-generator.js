@@ -36,10 +36,8 @@ const generateSchema = () => {
   const polymorphicSchema = Types.addPolymorphicUnionType(definition + shadowCRUD.definition);
 
   const builtResolvers = _.merge({}, shadowCRUD.resolvers, polymorphicSchema.resolvers);
-  if(strapi.plugins.upload) {
-    
-  }
-  const extraResolvers = strapi.plugins.upload ? diffResolvers(_schema.resolver, builtResolvers):{};
+
+  const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
 
   const resolvers = _.merge({}, builtResolvers, buildResolvers(extraResolvers));
 
