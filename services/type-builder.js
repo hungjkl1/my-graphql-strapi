@@ -12,7 +12,7 @@ const graphql = require('graphql');
 const { GraphQLJSON } = require('graphql-type-json');
 const { GraphQLDate, GraphQLDateTime } = require('graphql-iso-date');
 const GraphQLLong = require('graphql-type-long');
-
+const morp = require('./const')
 const Time = require('../types/time');
 const { toSingular, toInputName } = require('./naming');
 
@@ -202,7 +202,7 @@ module.exports = {
 
     if (types.length > 0) {
       return {
-        definition: `union Morph = ${types.join(' | ')}`,
+        definition: `union Morph = ${morp.replace(",","|")}`,
         resolvers: {
           Morph: {
             __resolveType(obj) {
