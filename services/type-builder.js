@@ -12,7 +12,6 @@ const graphql = require('graphql');
 const { GraphQLJSON } = require('graphql-type-json');
 const { GraphQLDate, GraphQLDateTime } = require('graphql-iso-date');
 const GraphQLLong = require('graphql-type-long');
-const morp = "UsersPermissionsMe, UsersPermissionsMeRole, UsersPermissionsLoginPayload, UserPersmissionsPasswordPayload, UploadFile, UploadFileConnection, UploadFileAggregator, UploadFileAggregatorSum, UploadFileAggregatorAvg, UploadFileAggregatorMin, UploadFileAggregatorMax, UploadFileGroupBy, UploadFileConnectionId, UploadFileConnection_id, UploadFileConnectionCreatedAt, UploadFileConnectionUpdatedAt, UploadFileConnectionName, UploadFileConnectionAlternativeText, UploadFileConnectionCaption, UploadFileConnectionWidth, UploadFileConnectionHeight, UploadFileConnectionFormats, UploadFileConnectionHash, UploadFileConnectionExt, UploadFileConnectionMime, UploadFileConnectionSize, UploadFileConnectionUrl, UploadFileConnectionPreviewUrl, UploadFileConnectionProvider, UploadFileConnectionProvider_metadata, UsersPermissionsPermission, UsersPermissionsRole, UsersPermissionsRoleConnection, UsersPermissionsRoleAggregator, UsersPermissionsRoleGroupBy, UsersPermissionsRoleConnectionId, UsersPermissionsRoleConnection_id, UsersPermissionsRoleConnectionCreatedAt, UsersPermissionsRoleConnectionUpdatedAt, UsersPermissionsRoleConnectionName, UsersPermissionsRoleConnectionDescription, UsersPermissionsRoleConnectionType, createRolePayload, updateRolePayload, deleteRolePayload, UsersPermissionsUser, UsersPermissionsUserConnection, UsersPermissionsUserAggregator, UsersPermissionsUserGroupBy, UsersPermissionsUserConnectionId, UsersPermissionsUserConnection_id, UsersPermissionsUserConnectionCreatedAt, UsersPermissionsUserConnectionUpdatedAt, UsersPermissionsUserConnectionUsername, UsersPermissionsUserConnectionEmail, UsersPermissionsUserConnectionProvider, UsersPermissionsUserConnectionConfirmed, UsersPermissionsUserConnectionBlocked, UsersPermissionsUserConnectionRole, createUserPayload, updateUserPayload, deleteUserPayload, Game, GameConnection, GameAggregator, GameAggregatorSum, GameAggregatorAvg, GameAggregatorMin, GameAggregatorMax, GameGroupBy, GameConnectionId, GameConnection_id, GameConnectionCreatedAt, GameConnectionUpdatedAt, GameConnectionGameName, GameConnectionPlayed, GameConnectionBanner, GameConnectionType, GameConnectionVersion, GameConnectionDateAdded, createGamePayload, updateGamePayload, deleteGamePayload"
 const Time = require('../types/time');
 const { toSingular, toInputName } = require('./naming');
 
@@ -199,16 +198,17 @@ module.exports = {
       .parse(definition)
       .definitions.filter(def => def.kind === 'ObjectTypeDefinition' && def.name.value !== 'Query')
       .map(def => def.name.value);
-
     if (types.length > 0) {
+      const a = {}
+      a[strapi.serviceName] = {
+        __resolveType(obj) {
+          return obj.kind || obj.__contentType || null;
+        },
+      }
       return {
-        definition: `union Morph = ${morp.split(", ").join(" | ")}`,
+        definition: `union ${strapi.serviceName} = ${morp.split(", ").join(" | ")}`,
         resolvers: {
-          Morph: {
-            __resolveType(obj) {
-              return obj.kind || obj.__contentType || null;
-            },
-          },
+          ...a
         },
       };
     }
