@@ -36,8 +36,9 @@ const generateSchema = () => {
   const polymorphicSchema = Types.addPolymorphicUnionType(definition + shadowCRUD.definition);
 
   const builtResolvers = _.merge({}, shadowCRUD.resolvers, polymorphicSchema.resolvers);
-
-  const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
+  if(schema.plugins.upload) {
+    const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
+  }
 
   const resolvers = _.merge({}, builtResolvers, buildResolvers(extraResolvers));
 
