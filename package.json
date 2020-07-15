@@ -1,0 +1,85 @@
+{
+  "_from": "strapi-plugin-graphql@3.0.0",
+  "_id": "strapi-plugin-graphql@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-hkBwrPl04R024gog5u/NUUkrObkKH+tsekuoRuB0c8OvKPSOw7i7xWU+Jw3tOA7F9Q22ojJZzw+rzN4SwKEvyQ==",
+  "_location": "/strapi-plugin-graphql",
+  "_phantomChildren": {
+    "@babel/runtime": "7.10.5",
+    "@sindresorhus/transliterate": "0.1.1",
+    "date-fns": "2.14.0",
+    "fn-name": "2.0.1",
+    "lodash-es": "4.17.15",
+    "pino": "4.17.6",
+    "pluralize": "7.0.0",
+    "property-expr": "1.5.1",
+    "shelljs": "0.8.4",
+    "synchronous-promise": "2.0.13",
+    "toposort": "2.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "strapi-plugin-graphql@3.0.0",
+    "name": "strapi-plugin-graphql",
+    "escapedName": "strapi-plugin-graphql",
+    "rawSpec": "3.0.0",
+    "saveSpec": null,
+    "fetchSpec": "3.0.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-graphql/-/strapi-plugin-graphql-3.0.0.tgz",
+  "_shasum": "357de4aa24bccb8ece84059895a33b3ceef5c433",
+  "_spec": "strapi-plugin-graphql@3.0.0",
+  "_where": "/home/hung/waza-server",
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "apollo-server-koa": "2.9.12",
+    "dataloader": "^1.4.0",
+    "glob": "^7.1.4",
+    "graphql": "^14.3.0",
+    "graphql-depth-limit": "^1.1.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-playground-middleware-koa": "^1.6.0",
+    "graphql-tools": "4.0.6",
+    "graphql-type-json": "0.3.1",
+    "graphql-type-long": "^0.1.1",
+    "koa-compose": "^4.1.0",
+    "lodash": "4.17.12",
+    "pluralize": "^7.0.0",
+    "strapi-utils": "3.0.0"
+  },
+  "deprecated": false,
+  "description": "This is the description of the plugin.",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "koa": "^2.8.0",
+    "rimraf": "3.0.0"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "gitHead": "6bb7a7f198b13b0780547285d4214704ce991c23",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "A Strapi developer"
+    }
+  ],
+  "name": "strapi-plugin-graphql",
+  "scripts": {
+    "test": "echo \"no tests yet\""
+  },
+  "strapi": {
+    "name": "graphql",
+    "icon": "plug",
+    "description": "Description of graphql plugin."
+  },
+  "version": "3.0.0"
+}
