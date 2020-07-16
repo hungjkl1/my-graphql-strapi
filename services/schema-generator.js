@@ -40,7 +40,7 @@ const generateSchema = () => {
     const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
   }
 
-  const resolvers = _.merge({}, builtResolvers, strapi.plugins.upload ? buildResolvers(extraResolvers):{});
+  const resolvers = _.merge({}, builtResolvers, strapi.plugins.upload ?  diffResolvers(_schema.resolver, builtResolvers):{});
 
   // Return empty schema when there is no model.
   if (_.isEmpty(shadowCRUD.definition) && _.isEmpty(definition)) {
