@@ -40,7 +40,7 @@ const generateSchema = () => {
     const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
   }
 
-  const resolvers = _.merge({}, builtResolvers, buildResolvers(extraResolvers));
+  const resolvers = _.merge({}, builtResolvers, schema.plugins.upload ? buildResolvers(extraResolvers):{});
 
   // Return empty schema when there is no model.
   if (_.isEmpty(shadowCRUD.definition) && _.isEmpty(definition)) {
