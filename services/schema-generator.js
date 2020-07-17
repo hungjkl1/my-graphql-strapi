@@ -36,11 +36,8 @@ const generateSchema = () => {
   const polymorphicSchema = Types.addPolymorphicUnionType(definition + shadowCRUD.definition);
 
   const builtResolvers = _.merge({}, shadowCRUD.resolvers, polymorphicSchema.resolvers);
-  if(strapi.plugins.upload) {
-    const extraResolvers = diffResolvers(_schema.resolver, builtResolvers);
-  }
 
-  const resolvers = _.merge({}, builtResolvers, strapi.plugins.upload ?  diffResolvers(_schema.resolver, builtResolvers):{});
+  const resolvers = _.merge({}, builtResolvers, strapi.plugins.upload ? buildResolvers(diffResolvers(_schema.resolver, builtResolvers)):{});
 
   // Return empty schema when there is no model.
   if (_.isEmpty(shadowCRUD.definition) && _.isEmpty(definition)) {
